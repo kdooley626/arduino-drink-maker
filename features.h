@@ -6,3 +6,4 @@ struct Timer{
 };
 void blinky_light(int ledPin);
 void led_off(int ledPin);
+void led_on(int ledPin);

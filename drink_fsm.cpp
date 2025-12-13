@@ -27,7 +27,6 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
  static unsigned long timer = 0;
  switch (dispenserState){
    case OFF:
-     Serial.println("OFF");
      led_off(LED);
      digitalWrite(motor1pin1, LOW);
      digitalWrite(motor2pin1, LOW);
@@ -43,10 +42,9 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
      digitalWrite(motor1pin2, LOW);
      digitalWrite(motor2pin1, HIGH);
      digitalWrite(motor2pin2, LOW);
-     blinky_light(LED);
+     led_on(LED);
      if (millis()-timer >= bothTime){
        Serial.print(timer);
-       Serial.println("LEAVING BOTH");
        timer = millis();
        dispenserState = MIXER;
      }
@@ -55,7 +53,6 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
      }
      break;
    case MIXER:
-     Serial.println("MIXER");
      digitalWrite(motor1pin1, LOW);
      blinky_light(LED);
      if (millis()-timer >= mixerTime){
