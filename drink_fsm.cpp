@@ -1,9 +1,10 @@
 #include <Arduino.h>
 #include "drink_fsm.h"
+#include "features.h"
 
 static int counter = 0;
-const unsigned long bothTime = 500;
-const unsigned long mixerTime = 500;
+const unsigned long bothTime = 4000;
+const unsigned long mixerTime = 15000;
 static bool lastButtonState = LOW;
 static bool fsmButtonTrigger = false; 
 
@@ -27,11 +28,10 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
  switch (dispenserState){
    case OFF:
      Serial.println("OFF");
-
+     led_off(LED);
      digitalWrite(motor1pin1, LOW);
      digitalWrite(motor2pin1, LOW);
      if (fsmButtonTrigger){
-       digitalWrite(LED,HIGH);
        timer = millis();
        dispenserState = BOTH;
      }
@@ -43,10 +43,10 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
      digitalWrite(motor1pin2, LOW);
      digitalWrite(motor2pin1, HIGH);
      digitalWrite(motor2pin2, LOW);
+     blinky_light(LED);
      if (millis()-timer >= bothTime){
        Serial.print(timer);
        Serial.println("LEAVING BOTH");
-       digitalWrite(LED,LOW);
        timer = millis();
        dispenserState = MIXER;
      }
@@ -57,7 +57,7 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
    case MIXER:
      Serial.println("MIXER");
      digitalWrite(motor1pin1, LOW);
-
+     blinky_light(LED);
      if (millis()-timer >= mixerTime){
        counter++;
        timer = millis();
@@ -65,7 +65,6 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
          fsmButtonTrigger = false;
          lastButtonState = LOW;
          dispenserState = OFF;
-         digitalWrite(LED, LOW);
          counter = 0;
      }
        else{

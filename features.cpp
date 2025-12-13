@@ -1,18 +1,22 @@
 #include <Arduino.h>
 
+void led_off(int ledPin){
+    digitalWrite(ledPin, LOW);
+}
+
 void blinky_light(int ledPin){
-  const unsigned int blinkTime = 200;
-  unsigned long nextblinkTime = 0;
-  bool lastlightState = false;
+  static const unsigned int blinkTime = 200;
+  static unsigned long nextblinkTime = 0;
+  static bool lastlightState = false;
   if (nextblinkTime <= millis()){
-    lastlightState = ~lastlightState;
+    lastlightState = !lastlightState;
     if (lastlightState){
       digitalWrite(ledPin, HIGH);
     }
     else{
       digitalWrite(ledPin,LOW);
     }
-    nextblinkTime = nextblinkTime + blinkTime;
+    nextblinkTime = millis() + blinkTime;
   }
   
   

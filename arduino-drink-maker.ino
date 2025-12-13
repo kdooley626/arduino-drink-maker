@@ -32,8 +32,11 @@ void setup() {
 void loop() 
 {
   detect_button(button);
-  if (get_fsm_on()){
-    make_drink( motor1pin1,  motor1pin2,  motor2pin1,  motor2pin2,  LED, dispenserState);
+  // if (get_fsm_on()){
+  //   dispenserState = make_drink( motor1pin1,  motor1pin2,  motor2pin1,  motor2pin2,  LED, dispenserState);
+  // }
+    if (true){
+    dispenserState = make_drink( motor1pin1,  motor1pin2,  motor2pin1,  motor2pin2,  LED, dispenserState);
   }
 }
 
