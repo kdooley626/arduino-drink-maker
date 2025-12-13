@@ -10,7 +10,7 @@ static bool fsmButtonTrigger = false;
 bool detect_button(int buttonPin){
   bool currentState = digitalRead(buttonPin);
   bool pressed = false;
-  if (currentState = HIGH && lastButtonState = LOW){
+  if (currentState == HIGH && lastButtonState == LOW){
     pressed = true;
     fsmButtonTrigger = true;
     lastButtonState = HIGH;
@@ -88,19 +88,4 @@ int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, i
    return dispenserState;
 }
 
-void makeDrink1(bool button) {
-  analogWrite(motor1sp, 255);
-  analogWrite(motor2sp, 255);
-  for (int i = 0; i<5; ++i){
-      digitalWrite(motor1pin1, HIGH);
-      digitalWrite(motor1pin2, LOW);
-      digitalWrite(motor2pin1, HIGH);
-      digitalWrite(motor2pin2, LOW);
-      delay(4000);
-      digitalWrite(motor1pin1, LOW);
-      delay(15000);
 
-  }
-  digitalWrite(motor2pin1, LOW);
-  digitalWrite(motor1pin1, LOW);
-}

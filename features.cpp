@@ -7,10 +7,10 @@ void blinky_light(int ledPin){
   if (nextblinkTime <= millis()){
     lastlightState = ~lastlightState;
     if (lastlightState){
-      digitalWrite(LED, HIGH);
+      digitalWrite(ledPin, HIGH);
     }
     else{
-      digitalWrite(LED,LOW);
+      digitalWrite(ledPin,LOW);
     }
     nextblinkTime = nextblinkTime + blinkTime;
   }
