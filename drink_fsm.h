@@ -5,6 +5,22 @@ OFF,
 BOTH,
 MIXER
 };
-int make_drink(int motor1pin1, int motor1pin2, int motor2pin1, int motor2pin2, int LED,  DispenserState dispenserState);
+
+typedef struct {
+    int motor1Pin1;
+    int motor1Pin2;
+    int motor1PinSP;
+    int motor2Pin1;
+    int motor2Pin2;
+    int motor2PinSP;
+    int ledPin;
+    DispenserState dispenserState;
+    unsigned long timer;
+    int counter;
+    const unsigned long bothTime;
+    const unsigned long mixerTime;
+} Drink;
+
+void make_drink(Drink &drink);
 bool detect_button(int buttonPin);
 bool get_fsm_on();

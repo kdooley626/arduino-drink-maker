@@ -1,29 +1,39 @@
 #include "drink_fsm.h"
 
-int motor1pin1 = 2;
-int motor1pin2 = 3;
-int motor1sp = 9;
+Drink rumncoke = {
+    2,   // motor1pin1
+    3,   // motor1pin2
+    9,   // motor1pinSP
+    4,   // motor2pin1
+    5,   // motor2pin2
+    10,   //motor2pinsp
+    7,   // LED
+    OFF, // initial state
+    0,   // initial timer
+    0,   // initial counter
+    4000, // bothTime 
+    15000 // mixerTime
+};
 
-int motor2pin1 = 4;
-int motor2pin2 = 5;
-int motor2sp = 10;
+
 int button = 8;
-int LED = 7;
 
-DispenserState dispenserState = OFF;
 
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(motor1pin1, OUTPUT);
-  pinMode(motor1pin2, OUTPUT);
-  pinMode(motor2pin1, OUTPUT);
-  pinMode(motor2pin2, OUTPUT);
+  pinMode(rumncoke.motor1Pin1, OUTPUT);
+  pinMode(rumncoke.motor1Pin2, OUTPUT);
+  pinMode(rumncoke.motor2Pin1, OUTPUT);
+  pinMode(rumncoke.motor2Pin2, OUTPUT);
 
-  pinMode(motor1sp, OUTPUT);
-  pinMode(motor2sp, OUTPUT);
+  pinMode(rumncoke.motor1PinSP, OUTPUT);
+  pinMode(rumncoke.motor2PinSP, OUTPUT);
   pinMode(button, INPUT_PULLUP);
-  pinMode(LED, OUTPUT);
+  pinMode(rumncoke.ledPin, OUTPUT);
+
+  rumncoke.dispenserState = OFF;
+
   Serial.begin(9600);
 
 }
@@ -35,24 +45,24 @@ void loop()
   // if (get_fsm_on()){
   //   dispenserState = make_drink( motor1pin1,  motor1pin2,  motor2pin1,  motor2pin2,  LED, dispenserState);
   // }
-    if (true){
-    dispenserState = make_drink( motor1pin1,  motor1pin2,  motor2pin1,  motor2pin2,  LED, dispenserState);
+  if (true){
+      make_drink(rumncoke);
   }
 }
 
-void makeDrink1(bool button) {
-  analogWrite(motor1sp, 255);
-  analogWrite(motor2sp, 255);
-  for (int i = 0; i<5; ++i){
-      digitalWrite(motor1pin1, HIGH);
-      digitalWrite(motor1pin2, LOW);
-      digitalWrite(motor2pin1, HIGH);
-      digitalWrite(motor2pin2, LOW);
-      delay(4000);
-      digitalWrite(motor1pin1, LOW);
-      delay(15000);
+// void makeDrink1(bool button) {
+//   analogWrite(motor1sp, 255);
+//   analogWrite(motor2sp, 255);
+//   for (int i = 0; i<5; ++i){
+//       digitalWrite(motor1pin1, HIGH);
+//       digitalWrite(motor1pin2, LOW);
+//       digitalWrite(motor2pin1, HIGH);
+//       digitalWrite(motor2pin2, LOW);
+//       delay(4000);
+//       digitalWrite(motor1pin1, LOW);
+//       delay(15000);
 
-  }
-  digitalWrite(motor2pin1, LOW);
-  digitalWrite(motor1pin1, LOW);
-}
+//   }
+//   digitalWrite(motor2pin1, LOW);
+//   digitalWrite(motor1pin1, LOW);
+// }
