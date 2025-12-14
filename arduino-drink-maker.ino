@@ -18,6 +18,7 @@ Drink rumncoke = {
     false    // fsmButtonTrigger;
 };
 
+
 Drink gintonic = {
     8,   // motor1pin1
     10,   // motor1pin2
@@ -35,11 +36,6 @@ Drink gintonic = {
     HIGH,    // lastButtonState;
     false    // fsmButtonTrigger;
 };
-
-
-
-
-
 
 void setup() {
   // put your setup code here, to run once:

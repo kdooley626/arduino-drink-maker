@@ -6,10 +6,9 @@ BOTH,
 MIXER
 };
 
-void stop_motor(int pin1, int pin2);
-void run_motor(int pin1, int pin2);
 
-typedef struct {
+typedef struct 
+{
     int motor1Pin1;
     int motor1Pin2;
     int motor1PinSP;
@@ -26,6 +25,13 @@ typedef struct {
     bool lastButtonState;
     bool fsmButtonTrigger;
 } Drink;
+
+
+
+
+void stop_motor(int pin1, int pin2);
+void run_motor(int pin1, int pin2);
+
 
 void make_drink(Drink &drink);
 bool detect_button(Drink &drink);
