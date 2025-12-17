@@ -1,5 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "sketch": "arduino-drink-maker.ino",
-    "port": "COM6"
+    "port": "COM6",
+    "programmer": "avrisp"
 }
