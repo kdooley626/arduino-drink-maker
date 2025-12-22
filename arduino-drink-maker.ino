@@ -33,7 +33,7 @@ Drink gintonic = {
     0,   // initial counter
     4000, // bothTime 
     15000, // mixerTime
-    HIGH,    // lastButtonState;
+    LOW,    // lastButtonState;
     false    // fsmButtonTrigger;
 };
 
@@ -49,6 +49,16 @@ void setup() {
   pinMode(rumncoke.buttonPin, INPUT_PULLUP);
   pinMode(rumncoke.ledPin, OUTPUT);
 
+  pinMode(gintonic.motor1Pin1, OUTPUT);
+  pinMode(gintonic.motor1Pin2, OUTPUT);
+  pinMode(gintonic.motor2Pin1, OUTPUT);
+  pinMode(gintonic.motor2Pin2, OUTPUT);
+
+  pinMode(gintonic.motor1PinSP, OUTPUT);
+  pinMode(gintonic.motor2PinSP, OUTPUT);  
+  pinMode(gintonic.buttonPin, INPUT_PULLUP);
+  pinMode(gintonic.ledPin, OUTPUT);
+
   rumncoke.dispenserState = OFF;
   analogWrite(rumncoke.motor1PinSP, 255);
   analogWrite(rumncoke.motor2PinSP, 255);  
@@ -62,6 +72,8 @@ void loop()
 {
   detect_button(rumncoke);
   make_drink(rumncoke);
+  detect_button(gintonic);
+  make_drink(gintonic);
 
 }
 
